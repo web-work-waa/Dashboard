@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+@mixin object($width, $height, $bg) {
+	width: $width;
+	height: $height;
+	background: $bg;
+}
+
+@mixin transPos($top, $right, $bottom, $left,$transX,$transY) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	right: $right;
+	bottom: $bottom;
+	transform:translate($transX,$transY);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+body {
+	height:100vh;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+
+::-webkit-scrollbar{
+	display: none;
+}
+
+
+.wrap {
+	@include object(375px,640px,#0D1019);
+	font-family: "Open Sans", sans-serif;
+	position: relative;
+	overflow: hidden;
+	.app {
+		@include object(375px,640px,null);
+		overflow-y: scroll;
+		.statusBar {
+			position: fixed;
+			z-index: 10;
+		}
+		header {
+			padding:25px 16px 0 16px;
+			.notifHeader {
+				height:50px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				.userAvatar {
+					@include object(35px,35px,null);
+					img{
+						border-radius:50%;
+						width:100%;
+						cursor:pointer;
+					}
+				}
+				.options {
+					text-align: right;
+					i {
+						width:50px;
+						color:#fff;
+						cursor:pointer;
+					}
+				}
+			}
+			.timeStamp{
+				display: flex;
+				justify-content: space-between;
+				margin: 20px 0;
+				.greet {
+					color:#fff;
+					p {					
+						font-size: 16px;
+						margin-bottom: 10px;
+						letter-spacing: 0.5px;
+					}
+					h1 {
+						font-size: 40px;
+						font-weight: 500;
+					}
+				}
+				.dayIcon {
+					@include object(52px,52px,null);
+					i {
+						font-size: 60px;
+						margin-left: -5px;
+						color:yellow;
+					}
+				}
+			}
+		}
+		.reminders {
+			padding:0 16px;
+			color:#fff;
+			
+			.halfWidth {
+				display: flex;
+				justify-content: space-between;
+				.todo {
+					@include object(48%,160px,null);
+					border-radius:10px;
+					position: relative;
+					span {
+						font-size: 72px;
+						font-weight: 300;
+						margin: 0 16px;
+						line-height: 90px;
+					}
+					.fa {
+						@include transPos(20px,20px,null,null,null,null);
+					}
+					p,h4 {
+						padding-left: 16px;
+					}
+					.line {
+						height: 2px;
+						margin-top: 10px;
+						background: rgba(#fff, 0.3);
+					}
+					h4 {
+						font-weight: 600;
+						line-height: 40px;
+						cursor:pointer;
+					}
+					&:first-child {
+						background: #FACE14;
+					}
+					&:last-child {
+						background: #F21E60;
+					}
+				}
+			}
+			.fullWidth {
+				.todo {
+					@include object(100%,160px,#8D4DE9);
+					border-radius:10px;
+					margin-top: 15px;
+					position: relative;
+					span {
+						font-size: 72px;
+						font-weight: 300;
+						margin: 0 16px;
+						line-height: 116px;
+						float:left;
+					}
+					.fa {
+						@include transPos(20px,20px,null,null,null,null);
+					}
+					p {
+						padding-top:72px; 
+					}
+					.line {
+						height: 2px;
+						margin-top: 10px;
+						background: rgba(#fff, 0.3);
+						clear:both;
+					}
+					h4 {
+						font-weight: 600;
+						padding-left:16px; 
+						line-height: 40px;
+						cursor:pointer;
+					}
+				}
+			}
+		}
+		.publicActivity {
+			@include object(600px,auto,#1E1F27);
+			margin: 16px 0;
+			padding: 16px 0 16px 16px;
+			overflow-x: auto;
+			white-space: nowrap;
+			display: flex;
+			.card{
+				@include object(240px,160px,#fff);
+				float:left;
+				border-radius: 10px;
+				&:first-child {
+					margin-right: 16px;
+				}
+				.userAvatar{
+					@include object(32px,32px,null);
+					margin: 16px;
+					margin-bottom: 10px;
+					float:left;
+					img {
+						width:100%;
+						border-radius:50%;
+						cursor:pointer;
+					}
+				}
+				.userName{
+					margin-top: 25px;
+					font-weight: 600;
+					font-size: 14px;
+						cursor:pointer;
+				}
+				.text{
+					clear:both;
+					line-height: 24px;
+					margin: 0 16px;
+					font-size: 20px;
+				}
+				.line {
+					height: 2px;
+					margin-top: 10px;
+					background: rgba(0, 0, 0, 0.1);
+				}
+				.action{
+					.activityIcon{
+						@include object(42px,42px,null);
+						text-align: center;
+						float:left;
+						i {
+							line-height: 42px;
+							color:#99cc66;
+							cursor:pointer;
+						}
+					}
+					span{
+						color:#99cc66;
+						font-weight: 600;
+						font-size: 14px;
+						cursor:pointer;
+						line-height: 42px;
+					}
+				}
+			}
+		}
+		.friends{
+			@include object(100%,300px,null);
+			padding:0 16px;
+			margin: 16px 0;
+			.title {
+				font-size:14px;
+				color: rgba(#fff,0.4);
+			}
+			.card {
+				@include object(100%,422px,#fff);
+				border-radius:10px;
+				margin-top: 16px;
+				.cardCol {
+					height:auto;
+					border-bottom: 2px solid rgba(#000,0.1);
+					&:last-child {
+						border-bottom: none;
+					}
+					.userAvatar {
+						@include object(30px,30px,null);
+						float:left;
+						margin: 16px 16px 5px 16px;
+						img{
+							width:100%;
+							border-radius:50%;
+							cursor:pointer;
+						}
+					}
+					.userName{
+						padding-top: 26px;
+						font-weight: 600;
+						font-size: 14px;
+					}
+					span{
+						float:right;
+						margin: -15px 15px 0 0;
+						font-size:14px;
+						cursor:pointer;
+						color:#99cc66;
+						font-weight: 600;
+					}
+					.activity{
+						line-height: 24px;
+						margin: 0 16px;
+						font-size: 18px;
+						clear:both;
+						padding-bottom: 16px;
+						opacity: 0.7;
+					}
+				}
+			}
+		}
+		.empty {
+			@include object(100%,216px,null);
+		}
+	}
+	.tabs {
+		@include object(100%,60px,#161724);
+		@include transPos(null,null,0,0,null,null);
+		display: flex;
+		justify-content: space-between;
+		.tab {
+			width:25%;
+			text-align: center;
+			line-height: 70px;
+			cursor:pointer;
+			transition:0.4s ease-in-out;
+			&:first-child {
+				background: darken(#161724,5%);
+			}
+			&:hover  {
+				background: darken(#161724,5%);
+			}
+		}
+	}
+}
+
+@media screen and(max-width:380px) {
+	.wrap {
+		@include object(100vw,100vh,#0D1019);
+		.app {
+			width:inherit;
+			height:inherit;
+			overflow-x:hidden;
+		}
+	}
+}
